@@ -4,6 +4,7 @@ class Band < ActiveRecord::Base
 
     def self.most_performances
         all.max {|b1, b2| b1.concerts.length <=> b2.concerts.length}
+        # self.joins(:concerts).group(:band_id).order("COUNT(concerts.id) DESC").limit[1].first
     end
 
     def play_in_venue(venue, date)
